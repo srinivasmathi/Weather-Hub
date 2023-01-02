@@ -1,0 +1,7 @@
+
+#ignoring the express resources and app info(package.json)
+
+node_modules
+
+*.json
+.env

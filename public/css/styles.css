@@ -1,0 +1,8 @@
+body{
+  background-image: url("../images/cold.jpg");
+  background-size: 100% 150%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: top left;
+
+}
