@@ -1,8 +1,97 @@
 body{
-  background-image: url("../images/cold.jpg");
-  background-size: 100% 150%;
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-position: top left;
+  color: #FEFBF6;
+}
 
+
+.right-panel{
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 27%;
+  height: 100%;
+  padding-left: 35px;
+
+  background-color: rgba(0,0,0,0.3);
+  backdrop-filter : blur(60px);
+}
+
+.search{
+  background-color: rgba(0,0,0,0);
+  color: white;
+  height: 4em;
+  width: 80%;
+  font-size: 1em;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-color: rgba(0,0,0,0.2);
+}
+.search:focus{
+  outline: none;
+}
+
+.search-btn{
+  background-color: rgba(90,90,90,0.1);
+  backdrop-filter : blur(60px);
+  border-color: rgba(87, 111, 114,0.2);
+  color: #DFDFDE;
+  height: 6em;
+  width: 17%;
+}
+
+.forecast{
+  display: inline-block;
+  position: absolute;
+  bottom: 1em;
+}
+
+.forecast_p{
+  margin: 0.6em auto
+}
+
+.three-hour-forecast{
+  display: inline-block;
+  width: 11em;
+  height: 11em;
+  margin: 1.5em 1em;
+  border-radius: 0.5em;
+  background-color: rgba(0,0,0,0.3);
+  backdrop-filter : blur(60px);
+  text-align: center;
+}
+
+.forecast-heading{
+  margin-left: 1em;
+}
+
+.sunny{
+  background-image: url("../images/sunny.jpg");
+  background-size: 110% 150%;
+  background-position: center bottom;
+}
+
+.rainy{
+  background-image: url("../images/rainy.jpg");
+  background-size: 100% 165%;
+  background-position: center center;
+}
+
+.snow{
+  background-image: url("../images/cold.jpg");
+  background-size: cover;
+}
+
+.mist{
+  background-image: url("../images/mist.jpg");
+  background-position:center center;
+  background-size: 100% 150%;
+}
+
+.clouds{
+  background-image: url("../images/cloudy.jpg");
+  background-position: left center;
+  background-size: 100% 100%;
 }

@@ -3,9 +3,50 @@
   <head>
     <meta charset="utf-8">
     <title>Weather Hub | Weather Forcasting </title>
+    <link rel="preload" href="css/styles.css" as="style">
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+
   </head>
   <body>
-    <h1>Weather Hub</h1>
+
+    <div class="currentWeather">
+      <h1>Weather Hub</h1>
+      <p>temperature : <%= currentData.temperature %> </p>
+      <p>city name :<%= currentData.cityName %></p>
+      <p id="description"><%=currentData.description%></p>
+      <p> time : <%= currentData.datetime %></p>
+    </div>
+
+
+    <div class="right-panel">
+      <div class="search-bar">
+        <form class="" action="/" method="post">
+          <input class="search" type="text" name="cityName" value="" placeholder="type any City">
+          <button class="search-btn" type="submit" name="submit"><i class="fa-solid fa-magnifying-glass fa-2x"></i></button>
+        </form>
+      </div>
+      <p>high/low : <%= currentData.highTemp+"/"+currentData.lowTemp %></p>
+      <p>pressure : <%= currentData.pressure %></p>
+      <p>humidity : <%= currentData.humidity %></p>
+      <img src=<%= currentData.iconURL %> alt="">
+      <p>windSpeed : <%= currentData.windSpeed %></p>
+    </div>
+
+    <div class="forecast">
+      <h2 class='forecast-heading'>Three Hour Forecast</h2>
+      <% forecastData.forEach(function(item){ %>
+        <div class="three-hour-forecast">
+          <p class="forecast_p"><%=  item.time  %></p>
+          <img src=<%= item.iconURL %> alt="">
+          <p class="forecast_p"><%= item.temperature %></p>
+          <p class="forecast_p"><%= item.description %></p>
+        </div>
+      <% }) %>
+    </div>
+    <script src="index.js"></script>
   </body>
 </html>
