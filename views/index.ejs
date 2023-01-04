@@ -13,12 +13,14 @@
   </head>
   <body>
 
+    <h1>Weather Hub</h1>
+
     <div class="currentWeather">
-      <h1>Weather Hub</h1>
-      <p>temperature : <%= currentData.temperature %> </p>
-      <p>city name :<%= currentData.cityName %></p>
+      <p class="cur-city-temp"><%= currentData.temperature+"°" %> </p>
+      <p class="cityName" ><%= currentData.cityName %></p>
+      <img class="cur-weather-img" src=<%= currentData.iconURL %> alt="">
+      <p class="cur-time"><%=currentData.datetime %></p>
       <p id="description"><%=currentData.description%></p>
-      <p> time : <%= currentData.datetime %></p>
     </div>
 
 
@@ -27,22 +29,31 @@
         <form class="" action="/" method="post">
           <input class="search" type="text" name="cityName" value="" placeholder="type any City">
           <button class="search-btn" type="submit" name="submit"><i class="fa-solid fa-magnifying-glass fa-2x"></i></button>
+          <% recents.forEach(function(item){ %>
+            <button class="recents-btn" type="submit" name="btn" value=<%= item %> ><%= item %></button><br>
+          <% }) %>
         </form>
       </div>
-      <p>high/low : <%= currentData.highTemp+"/"+currentData.lowTemp %></p>
-      <p>pressure : <%= currentData.pressure %></p>
-      <p>humidity : <%= currentData.humidity %></p>
-      <img src=<%= currentData.iconURL %> alt="">
-      <p>windSpeed : <%= currentData.windSpeed %></p>
+      <hr>
+      <h4>Weather Details</h4>
+      <p class="weather-details left-align">High/Low</p>
+      <p class="weather-details right-align"><%= currentData.highTemp+"/"+currentData.lowTemp+" °C" %></p>
+      <p class="weather-details left-align">Pressure</p>
+      <p class="weather-details right-align"><%= currentData.pressure+" hPa" %></p>
+      <p class="weather-details left-align">Humidity</p>
+      <p class="weather-details right-align"><%= currentData.humidity+" %" %></p>
+      <p class="weather-details left-align">Wind Speed</p>
+      <p class="weather-details right-align"><%= currentData.windSpeed+" m/s"%></p>
+      <hr>
     </div>
 
     <div class="forecast">
-      <h2 class='forecast-heading'>Three Hour Forecast</h2>
+      <h4 class='forecast-heading'>Three Hour Forecast</h4>
       <% forecastData.forEach(function(item){ %>
         <div class="three-hour-forecast">
           <p class="forecast_p"><%=  item.time  %></p>
           <img src=<%= item.iconURL %> alt="">
-          <p class="forecast_p"><%= item.temperature %></p>
+          <p class="forecast_p"><%= item.temperature+"°C" %></p>
           <p class="forecast_p"><%= item.description %></p>
         </div>
       <% }) %>

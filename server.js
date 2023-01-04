@@ -13,9 +13,16 @@ let defaultCity = "Chennai";
 
 let currentWeather = new Object()
 let forecastWeather = []
+let recents = ["Thanjavur","Madurai","Trichy","Coimbatore"];
 
 app.post("/",function(req,res){
-  cityName=req.body.cityName;
+
+  if(req.body.cityName != ""){
+    cityName=req.body.cityName;
+  }else{
+    console.log("pressed btn");
+    cityName=req.body.btn;
+  }
   res.redirect("/");
 })
 
@@ -36,8 +43,11 @@ app.get("/",function(req,res){
           if(ress.statusCode == 200){
             ress.on('data',function(data){
               getForecastedWeather(JSON.parse(data))
-              console.log(forecastWeather)
-              res.render('index',{"currentData":currentWeather,"forecastData":forecastWeather});
+              if(!recents.includes(currentWeather.cityName)){
+                recents.unshift(currentWeather.cityName);
+                recents.pop();  
+              }
+              res.render('index',{"currentData":currentWeather,"forecastData":forecastWeather,"recents":recents});
             })
           }
         })
@@ -56,10 +66,9 @@ function getDate(){
   options = {
     hour:"numeric",
     minute:"numeric",
-    weekday:"long",
+    weekday:"short",
     day:"numeric",
     month:"long",
-    year:"numeric"
   }
   const strDate = date.toLocaleDateString("en-US",options)
   return strDate;
@@ -79,12 +88,11 @@ function getForecastedWeather(data){
 
 function getCurrentWeather(data){
   const jsonData = JSON.parse(data)
-  console.log(jsonData)
   currentWeather = {
     description:jsonData.weather[0].description,
     iconURL: "http://openweathermap.org/img/wn/"+jsonData.weather[0].icon+".png",
     cityName:jsonData.name,
-    temperature:jsonData.main.temp,
+    temperature:Math.round(jsonData.main.temp),
     highTemp:jsonData.main.temp_max,
     lowTemp:jsonData.main.temp_min,
     pressure:jsonData.main.pressure,
