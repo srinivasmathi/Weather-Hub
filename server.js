@@ -102,7 +102,6 @@ function getCurrentWeather(data){
   }
 }
 
-
 function getTime(number){
   const time = new Date(number*1000).toLocaleTimeString("en-US",{hour:"numeric",minute:"numeric"})
   return time.toString()
